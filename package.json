@@ -1,0 +1,47 @@
+{
+  "name": "linki-lib0",
+  "version": "0.0.1",
+  "description": "A utility library inspired by the lib0 designed for projects using linki",
+  "keywords": ["linki", "lib0"],
+  "type": "module",
+  "author": "Marek Pazik <contact@marekpazik.pl>",
+  "license": "mit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpazik/linki-lib0.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mpazik/linki-lib0/issues"
+  },
+  "homepage": "https://github.com/mpazik/linki-lib0#readme",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/index.js"
+    },
+    "./array": {
+      "require": "./dist/cjs/array.js",
+      "import": "./dist/array.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tdl-build",
+    "prepack": "yarn build",
+    "lint": "tdl-lint",
+    "test": "tdl-test"
+  },
+  "devDependencies": {
+    "typescript-dev-loop": "^0.0.5"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "./node_modules/typescript-dev-loop/config/eslint.json"
+  }
+}

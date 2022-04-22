@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/typescript-dev-loop/config/tsconfig.json",
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "src/**/*.test.ts"
+  ]
+}
