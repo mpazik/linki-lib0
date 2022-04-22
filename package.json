@@ -1,8 +1,11 @@
 {
   "name": "linki-lib0",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A utility library inspired by the lib0 designed for projects using linki",
-  "keywords": ["linki", "lib0"],
+  "keywords": [
+    "linki",
+    "lib0"
+  ],
   "type": "module",
   "author": "Marek Pazik <contact@marekpazik.pl>",
   "license": "mit",
