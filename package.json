@@ -26,6 +26,22 @@
     "./array": {
       "require": "./dist/cjs/array.js",
       "import": "./dist/array.js"
+    },
+    "./functions": {
+      "require": "./dist/cjs/functions.js",
+      "import": "./dist/functions.js"
+    },
+    "./indexeddb": {
+      "require": "./dist/cjs/indexeddb.js",
+      "import": "./dist/indexeddb.js"
+    },
+    "./iterator": {
+      "require": "./dist/cjs/iterator.js",
+      "import": "./dist/iterator.js"
+    },
+    "./set": {
+      "require": "./dist/cjs/set.js",
+      "import": "./dist/set.js"
     }
   },
   "files": [

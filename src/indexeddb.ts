@@ -108,7 +108,7 @@ export const storeCount = (
 
 const iterateOnRequest = (
   request: IDBRequest<IDBCursorWithValue | null>,
-  handler: (coursor: IDBCursorWithValue) => void | boolean
+  handler: (cursor: IDBCursorWithValue) => void | boolean
 ): Promise<void> =>
   new Promise((resolve, reject) => {
     request.onerror = reject;
