@@ -39,15 +39,13 @@
     "*.d.ts"
   ],
   "scripts": {
-    "clean-declaration-files": "find . -maxdepth 1 -name \"*.d.ts\" -type f -delete",
-    "copy-declaration-files": "cp dist/*.d.ts .",
-    "build": "yarn clean-declaration-files && tdl-build && yarn copy-declaration-files",
+    "build": "tdl-build",
     "prepack": "yarn build",
     "lint": "tdl-lint",
     "test": "tdl-test"
   },
   "devDependencies": {
-    "typescript-dev-loop": "^0.0.5"
+    "typescript-dev-loop": "^0.0.7"
   },
   "engines": {
     "node": ">=12"
