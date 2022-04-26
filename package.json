@@ -45,7 +45,7 @@
     "test": "tdl-test"
   },
   "devDependencies": {
-    "typescript-dev-loop": "^0.0.7"
+    "typescript-dev-loop": "^0.0.8"
   },
   "engines": {
     "node": ">=12"
