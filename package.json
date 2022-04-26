@@ -18,30 +18,42 @@
   },
   "homepage": "https://github.com/mpazik/linki-lib0#readme",
   "sideEffects": false,
+  "main": "dist/cjs/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "require": "./dist/cjs/index.js",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
+    "./array.js": "./dist/array.js",
+    "./dist/array.cjs": "./dist/cjs/array.js",
     "./array": {
+      "import": "./dist/array.js",
       "require": "./dist/cjs/array.js",
-      "import": "./dist/array.js"
+      "types": "./dist/array.d.ts"
     },
     "./functions": {
+      "import": "./dist/functions.js",
       "require": "./dist/cjs/functions.js",
-      "import": "./dist/functions.js"
+      "types": "./dist/functions.d.ts"
     },
     "./indexeddb": {
       "require": "./dist/cjs/indexeddb.js",
-      "import": "./dist/indexeddb.js"
+      "import": "./dist/indexeddb.js",
+      "types": "./dist/indexeddb.d.ts"
     },
     "./iterator": {
       "require": "./dist/cjs/iterator.js",
-      "import": "./dist/iterator.js"
+      "import": "./dist/iterator.js",
+      "types": "./dist/iterator.d.ts"
     },
     "./set": {
       "require": "./dist/cjs/set.js",
-      "import": "./dist/set.js"
+      "import": "./dist/set.js",
+      "types": "./dist/set.d.ts"
     }
   },
   "files": [
