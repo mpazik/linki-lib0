@@ -1,4 +1,4 @@
-import { firstItem, lastItem } from "./array";
+import { firstItem, lastItem, removeItem } from "./array";
 
 describe("firstItem", () => {
   it("should return the first item of an array", () => {
@@ -17,5 +17,13 @@ describe("lastItem", () => {
 
   it("should return undefined if the array is empty", () => {
     expect(lastItem([])).toBeUndefined();
+  });
+});
+
+describe("removeItem", () => {
+  it("should return remove the item for the array", () => {
+    const original = [1, 2, 3];
+    removeItem(original, 2);
+    expect(original).toEqual([1, 3]);
   });
 });

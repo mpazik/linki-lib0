@@ -4,6 +4,14 @@ export const lastItem = <T>(arr: T[]) => arr[arr.length - 1];
 
 export const copyArray = <T>(a: T[]): T[] => a.slice();
 
+// returns void to highlight that the original array was mutated
+export const removeItem = <T>(array: T[], item: T): void => {
+  const index = array.indexOf(item);
+  if (index > -1) {
+    array.splice(index, 1);
+  }
+};
+
 export const filterUndefinedItems = <T>(array: (T | undefined)[]): T[] =>
   array.filter((it) => it !== undefined) as T[];
 
