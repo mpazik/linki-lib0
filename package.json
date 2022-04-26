@@ -35,8 +35,7 @@
     }
   },
   "files": [
-    "dist",
-    "*.d.ts"
+    "dist"
   ],
   "scripts": {
     "build": "tdl-build",
