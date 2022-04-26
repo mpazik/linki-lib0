@@ -62,7 +62,7 @@ const reqToPromise = <T>(request: IDBRequest<T>): Promise<T> =>
   });
 
 export const storeGet = <T>(
-  store: IDBObjectStore,
+  store: IDBObjectStore | IDBIndex,
   key: IDBValidKey | IDBKeyRange
 ): Promise<T | undefined> => reqToPromise(store.get(key) as IDBRequest<T>);
 
@@ -78,17 +78,17 @@ export const storeDelete = (
 ): Promise<undefined> => reqToPromise(store.delete(key));
 
 export const storeGetAll = <T>(
-  store: IDBObjectStore,
+  store: IDBObjectStore | IDBIndex,
   range?: IDBValidKey | IDBKeyRange
 ): Promise<T[]> => reqToPromise(store.getAll(range));
 
 export const storeGetAllKeys = (
-  store: IDBObjectStore,
+  store: IDBObjectStore | IDBIndex,
   range?: IDBValidKey | IDBKeyRange
 ): Promise<IDBValidKey[]> => reqToPromise(store.getAllKeys(range));
 
 export const storeGetAllKeysAndValues = <T>(
-  store: IDBObjectStore,
+  store: IDBObjectStore | IDBIndex,
   range?: IDBValidKey | IDBKeyRange
 ): Promise<{ key: IDBValidKey; value: T }[]> =>
   Promise.all([
@@ -122,17 +122,16 @@ const iterateOnRequest = (
   });
 
 export const storeIterate = <T>(
-  store: IDBObjectStore,
-  range: IDBKeyRange,
+  store: IDBObjectStore | IDBIndex,
   handler: (value: T, key: IDBValidKey) => void,
+  range?: IDBKeyRange,
   direction: IDBCursorDirection = "next"
 ): Promise<void> =>
   iterateOnRequest(store.openCursor(range, direction), (cursor) => {
     handler(cursor.value, cursor.key);
   });
-
 export const storeIterateKeys = (
-  store: IDBObjectStore,
+  store: IDBObjectStore | IDBIndex,
   range: IDBKeyRange,
   handler: (key: IDBValidKey) => void,
   direction: IDBCursorDirection = "next"
