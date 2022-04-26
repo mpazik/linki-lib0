@@ -1,6 +1,6 @@
 {
   "name": "linki-lib0",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A utility library inspired by the lib0 designed for projects using linki",
   "keywords": [
     "linki",
@@ -38,7 +38,7 @@
     "dist"
   ],
   "scripts": {
-    "clean-declaration-files": "find . -maxdepth 1 -name \"*.d.ts\" -type f --delete",
+    "clean-declaration-files": "find . -maxdepth 1 -name \"*.d.ts\" -type f -delete",
     "copy-declaration-files": "cp dist/*.d.ts .",
     "build": "yarn clean-declaration-files && tdl-build && yarn copy-declaration-files",
     "prepack": "yarn build",
