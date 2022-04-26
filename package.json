@@ -20,47 +20,27 @@
   "sideEffects": false,
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "require": "./dist/cjs/index.js",
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "require": "./dist/cjs/index.js"
     },
-    "./array.js": "./dist/array.js",
-    "./dist/array.cjs": "./dist/cjs/array.js",
-    "./array": {
-      "import": "./dist/array.js",
-      "require": "./dist/cjs/array.js",
-      "types": "./dist/array.d.ts"
-    },
-    "./functions": {
-      "import": "./dist/functions.js",
-      "require": "./dist/cjs/functions.js",
-      "types": "./dist/functions.d.ts"
-    },
-    "./indexeddb": {
-      "require": "./dist/cjs/indexeddb.js",
-      "import": "./dist/indexeddb.js",
-      "types": "./dist/indexeddb.d.ts"
-    },
-    "./iterator": {
-      "require": "./dist/cjs/iterator.js",
-      "import": "./dist/iterator.js",
-      "types": "./dist/iterator.d.ts"
-    },
-    "./set": {
-      "require": "./dist/cjs/set.js",
-      "import": "./dist/set.js",
-      "types": "./dist/set.d.ts"
+    "./*": {
+      "import": "./dist/*.js",
+      "types": "./dist/*.d.ts",
+      "require": "./dist/cjs/*.js"
     }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tdl-build",
+    "clean-declaration-files": "find . -maxdepth 1 -name \"*.d.ts\" -type f --delete",
+    "copy-declaration-files": "cp dist/*.d.ts .",
+    "build": "yarn clean-declaration-files && tdl-build && yarn copy-declaration-files",
     "prepack": "yarn build",
     "lint": "tdl-lint",
     "test": "tdl-test"

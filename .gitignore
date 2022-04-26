@@ -12,6 +12,7 @@ yarn-error.log*
 
 # Build output
 /dist
+*.d.ts
 
 # misc
 .DS_Store
