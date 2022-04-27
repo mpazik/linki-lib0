@@ -2,8 +2,6 @@ export const firstItem = <T>(arr: T[]): T => arr[0];
 
 export const lastItem = <T>(arr: T[]) => arr[arr.length - 1];
 
-export const copyArray = <T>(a: T[]): T[] => a.slice();
-
 // returns void to highlight that the original array was mutated
 export const removeItem = <T>(array: T[], item: T): void => {
   const index = array.indexOf(item);
@@ -11,6 +9,8 @@ export const removeItem = <T>(array: T[], item: T): void => {
     array.splice(index, 1);
   }
 };
+
+export const cloneArray = <T>(a: T[]): T[] => a.slice();
 
 export const filterUndefinedItems = <T>(array: (T | undefined)[]): T[] =>
   array.filter((it) => it !== undefined) as T[];
