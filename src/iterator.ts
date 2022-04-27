@@ -1,4 +1,4 @@
-import type { Consumer, Predicate, Transform } from "./functions";
+import type { Consumer, Predicate, Transform } from "./function";
 
 export const haveSameItem = <T>(a: Iterable<T>, b: Iterable<T>): boolean => {
   for (const itemA of a)

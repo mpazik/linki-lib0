@@ -14,6 +14,14 @@ export const openDb = (
     };
   });
 
+export const deleteDb = (dbName: string): Promise<void> =>
+  new Promise((resolve, reject) => {
+    const req = indexedDB.deleteDatabase(dbName);
+    req.onerror = () => reject(req.error);
+    req.onsuccess = () => resolve();
+    req.onblocked = () => reject(req.error);
+  });
+
 export const listDbs = (): Promise<string[]> => {
   if ("databases" in indexedDB) {
     return indexedDB
@@ -37,7 +45,7 @@ export const getStore = (
   store: string
 ): IDBObjectStore => transaction.objectStore(store);
 
-export const createStoreTransaction = (
+export const transactWithStore = (
   db: IDBDatabase,
   store: string,
   access: IDBTransactionMode = "readwrite"
@@ -46,7 +54,7 @@ export const createStoreTransaction = (
   return getStore(transaction, store);
 };
 
-export const createStoresTransaction = (
+export const transactWithStores = (
   db: IDBDatabase,
   stores: string[],
   access: IDBTransactionMode = "readwrite"
@@ -140,5 +148,5 @@ export const storeIterateKeys = (
     handler(cursor.key);
   });
 
-export const storeClear = (store: IDBObjectStore): Promise<undefined> =>
+export const storeClear = (store: IDBObjectStore): Promise<void> =>
   reqToPromise(store.clear());

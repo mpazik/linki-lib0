@@ -19,7 +19,7 @@ export const ignore: Transform<unknown, void> = () => {};
 
 export const equalStrict = (a: unknown, b: unknown) => a === b;
 
-export const equalityDeep = (a: unknown, b: unknown): boolean => {
+export const equalDeep = (a: unknown, b: unknown): boolean => {
   if (a === b) return true;
 
   if (a && b && typeof a == "object" && typeof b == "object") {
@@ -30,7 +30,7 @@ export const equalityDeep = (a: unknown, b: unknown): boolean => {
       if (!Array.isArray(b)) return false;
       length = a.length;
       if (length != b.length) return false;
-      for (i = length; i-- !== 0; ) if (!equalityDeep(a[i], b[i])) return false;
+      for (i = length; i-- !== 0; ) if (!equalDeep(a[i], b[i])) return false;
       return true;
     }
 
@@ -45,7 +45,7 @@ export const equalityDeep = (a: unknown, b: unknown): boolean => {
       const key = keys[i];
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      if (!equal(a[key], b[key])) return false;
+      if (!equalDeep(a[key], b[key])) return false;
     }
 
     return true;

@@ -1,4 +1,4 @@
-import type { MapFunction } from "./functions";
+import type { MapFunction } from "./function";
 
 export const getOrSet = <K, V>(map: Map<K, V>, key: K, defaultValue: V): V => {
   const value = map.get(key);
