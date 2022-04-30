@@ -48,7 +48,7 @@ export const getStore = (
 export const transactWithStore = (
   db: IDBDatabase,
   store: string,
-  access: IDBTransactionMode = "readwrite"
+  access?: IDBTransactionMode
 ): IDBObjectStore => {
   const transaction = db.transaction(store, access);
   return getStore(transaction, store);
@@ -57,7 +57,7 @@ export const transactWithStore = (
 export const transactWithStores = (
   db: IDBDatabase,
   stores: string[],
-  access: IDBTransactionMode = "readwrite"
+  access?: IDBTransactionMode
 ): IDBObjectStore[] => {
   const transaction = db.transaction(stores, access);
   return stores.map((store) => getStore(transaction, store));
@@ -114,7 +114,7 @@ export const storeCount = (
   range: IDBKeyRange
 ): Promise<number> => reqToPromise(store.count(range));
 
-const iterateOnRequest = (
+const iterateRequest = (
   request: IDBRequest<IDBCursorWithValue | null>,
   handler: (cursor: IDBCursorWithValue) => void | boolean
 ): Promise<void> =>
@@ -129,24 +129,42 @@ const iterateOnRequest = (
     };
   });
 
+export const storeIterateHavingCursor = (
+  store: IDBObjectStore | IDBIndex,
+  handler: (cursor: IDBCursorWithValue) => void | boolean,
+  range?: IDBKeyRange,
+  direction?: IDBCursorDirection
+): Promise<void> => iterateRequest(store.openCursor(range, direction), handler);
+
 export const storeIterate = <T>(
   store: IDBObjectStore | IDBIndex,
   handler: (value: T, key: IDBValidKey) => void,
   range?: IDBKeyRange,
-  direction: IDBCursorDirection = "next"
+  direction?: IDBCursorDirection
 ): Promise<void> =>
-  iterateOnRequest(store.openCursor(range, direction), (cursor) => {
-    handler(cursor.value, cursor.key);
-  });
+  storeIterateHavingCursor(
+    store,
+    (cursor) => {
+      handler(cursor.value, cursor.key);
+    },
+    range,
+    direction
+  );
+
 export const storeIterateKeys = (
   store: IDBObjectStore | IDBIndex,
-  range: IDBKeyRange,
   handler: (key: IDBValidKey) => void,
-  direction: IDBCursorDirection = "next"
+  range?: IDBKeyRange,
+  direction?: IDBCursorDirection
 ): Promise<void> =>
-  iterateOnRequest(store.openCursor(range, direction), (cursor) => {
-    handler(cursor.key);
-  });
+  storeIterateHavingCursor(
+    store,
+    (cursor) => {
+      handler(cursor.key);
+    },
+    range,
+    direction
+  );
 
 export const storeClear = (store: IDBObjectStore): Promise<void> =>
   reqToPromise(store.clear());
