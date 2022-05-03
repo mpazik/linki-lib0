@@ -22,7 +22,8 @@ export const removeItemFromMapArray = <K, V>(
 ): void => {
   const array = map.get(key) ?? [];
   removeItem(array, value);
-  map.set(key, array);
+  if (array.length === 0) map.delete(key);
+  else map.set(key, array);
 };
 
 export const collectToMap = <K, V, T>(
