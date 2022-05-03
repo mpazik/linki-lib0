@@ -1,3 +1,8 @@
+/**
+ * A static reference for an empty array
+ */
+export const emptyArray = [];
+
 export const firstItem = <T>(arr: T[]): T => arr[0];
 
 export const lastItem = <T>(arr: T[]) => arr[arr.length - 1];
