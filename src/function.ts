@@ -54,3 +54,13 @@ export const equalDeep = (a: unknown, b: unknown): boolean => {
   // true if both NaN, false otherwise
   return a !== a && b !== b;
 };
+
+export const is =
+  <T>(a: T): Predicate<T> =>
+  (b) =>
+    equalStrict(a, b);
+
+export const isEqualTo =
+  <T>(a: T): Predicate<T> =>
+  (b) =>
+    equalDeep(a, b);
