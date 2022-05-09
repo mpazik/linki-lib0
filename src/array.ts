@@ -1,6 +1,8 @@
 /**
  * A static reference for an empty array
  */
+import { isEqualTo } from "./function";
+
 export const emptyArray = [];
 
 export const firstItem = <T>(arr: T[]): T => arr[0];
@@ -14,6 +16,9 @@ export const removeItem = <T>(array: T[], item: T): void => {
     array.splice(index, 1);
   }
 };
+
+export const filterOutItem = <T>(array: T[], item: T): T[] =>
+  array.filter(isEqualTo(item));
 
 export const cloneArray = <T>(a: T[]): T[] => a.slice();
 
@@ -35,3 +40,6 @@ export const splitArray = <T>(
   }
   return [trueArray, falseArray];
 };
+
+export const normaliseArray = <T>(item: undefined | T | T[]): T[] =>
+  item === undefined ? [] : Array.isArray(item) ? item : [item];
