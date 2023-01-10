@@ -47,7 +47,10 @@
     "test": "tdl-test"
   },
   "devDependencies": {
-    "typescript-dev-loop": "^0.1.1"
+    "typescript-dev-loop": "^0.1.4"
+  },
+  "resolutions": {
+    "@jest/create-cache-key-function": "29.3.1"
   },
   "engines": {
     "node": ">=12"
