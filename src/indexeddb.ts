@@ -1,4 +1,4 @@
-import { filterUndefinedItems } from "./array";
+import { filterDefined } from "./array";
 
 export const openDb = (
   dbName: string,
@@ -27,7 +27,7 @@ export const listDbs = (): Promise<string[]> => {
     return indexedDB
       .databases()
       .then((list) => list.map((db) => db.name))
-      .then(filterUndefinedItems);
+      .then(filterDefined);
   }
   throw new Error("Browser does not support 'indexedDB.databases'");
 };

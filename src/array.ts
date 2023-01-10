@@ -1,7 +1,7 @@
 /**
  * A static reference for an empty array
  */
-import { isEqualTo } from "./function";
+import { defined, nonNull } from "./function";
 
 export const emptyArray = [];
 
@@ -17,13 +17,16 @@ export const removeItem = <T>(array: T[], item: T): void => {
   }
 };
 
-export const filterOutItem = <T>(array: T[], item: T): T[] =>
-  array.filter(isEqualTo(item));
-
 export const cloneArray = <T>(a: T[]): T[] => a.slice();
 
-export const filterUndefinedItems = <T>(array: (T | undefined)[]): T[] =>
-  array.filter((it) => it !== undefined) as T[];
+export const filterDefined = <T>(array: (T | undefined)[]): T[] =>
+  array.filter(defined) as T[];
+
+export const filterNonNull = <T>(array: (T | undefined | null)[]): T[] =>
+  array.filter(nonNull) as T[];
+
+export const range = (from: number, to: number): number[] =>
+  Array.from({ length: to + 1 - from }, (_, i) => from + i);
 
 export const splitArray = <T>(
   array: T[],

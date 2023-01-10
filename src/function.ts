@@ -64,3 +64,9 @@ export const isEqualTo =
   <T>(a: T): Predicate<T> =>
   (b) =>
     equalDeep(a, b);
+
+export const defined = <T>(value: T | undefined): value is T =>
+  value !== undefined;
+
+export const nonNull = <T>(value: T | null | undefined): value is T =>
+  value !== null && value !== undefined;
