@@ -111,7 +111,7 @@ export const storeGetAllKeysAndValues = <T>(
 
 export const storeCount = (
   store: IDBObjectStore,
-  range: IDBKeyRange
+  range?: IDBKeyRange
 ): Promise<number> => reqToPromise(store.count(range));
 
 const iterateRequest = (
